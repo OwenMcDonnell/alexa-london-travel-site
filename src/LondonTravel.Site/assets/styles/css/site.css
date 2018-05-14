@@ -1,10 +1,40 @@
-﻿/*
+/*
     Copyright (c) Martin Costello, 2017. All rights reserved.
     Licensed under the Apache 2.0 license. See the LICENSE file in the project root for full license information.
 */
 
-body {
-    padding-top: 70px;
+@media (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi) {
+
+    html {
+        font-size: 16px;
+    }
+
+    body {
+        font-size: 1rem;
+    }
+}
+
+a {
+    color: #0f7661;
+}
+
+blockquote {
+    border-left: 5px solid #ecf0f1;
+    margin: 0 0 21px;
+    padding: 10.5px 21px;
+}
+
+.alert-info {
+    background-color: #207ab6;
+}
+
+.body-content {
+    padding-top: 10px;
+}
+
+.btn-danger {
+    background-color: #de2f1b;
+    border-color: #de2f1b;
 }
 
 .btn-wrapper {
@@ -12,10 +42,18 @@ body {
 }
 
 .btn-amazon {
-    background-color: #FF9900;
+    background-color: #ff9900;
     border-color: rgb(0,0,0);
     border-color: rgba(0,0,0,0.2);
     color: #fff;
+}
+
+.card-header {
+    font-weight: bold;
+}
+
+.form-control {
+    color: #596364;
 }
 
 .loader {
@@ -38,8 +76,4 @@ body {
     100% {
         transform: rotate(360deg);
     }
-}
-
-.panel-heading {
-    font-weight: bold;
 }

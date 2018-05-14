@@ -24,7 +24,7 @@ namespace martinCostello.londonTravel {
         public initialize(): void {
             $(".js-hidden-control")
                 .fadeIn()
-                .removeClass("hide");
+                .removeClass("d-none");
             $(".js-modal-form").on("submit", this.onFormSubmit);
             $(".js-modal").on("show.bs.modal", this.onModalShown);
         }
@@ -35,9 +35,9 @@ namespace martinCostello.londonTravel {
          */
         private onFormSubmit = (e: JQuery.Event): void => {
             let form: JQuery = $(e.target);
-            form.find(".js-delete-control").addClass("disabled");
-            form.find(".js-delete-content").addClass("hide");
-            form.find(".js-delete-loader").removeClass("hide");
+            form.find(".js-delete-control").prop("disabled", true);
+            form.find(".js-delete-content").addClass("d-none");
+            form.find(".js-delete-loader").removeClass("d-none");
         }
 
         /**
@@ -48,8 +48,7 @@ namespace martinCostello.londonTravel {
             let modal: JQuery = $(e.target);
             setTimeout(() => {
                 modal.find(".js-modal-confirm")
-                    .prop("disabled", false)
-                    .removeClass("disabled");
+                    .prop("disabled", false);
             }, this.confirmationTimeout);
         }
     }

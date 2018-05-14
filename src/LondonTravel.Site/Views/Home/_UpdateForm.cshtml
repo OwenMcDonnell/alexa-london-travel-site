@@ -1,10 +1,10 @@
-﻿@model LinePreferencesViewModel
+@model LinePreferencesViewModel
 <form asp-route="@SiteRoutes.UpdateLinePreferences" class="js-preferences-container" method="post">
     <input type="hidden" name="@(nameof(UpdateLinePreferencesViewModel.ETag))" value="@Model.ETag" />
     @if (Model.HasFavorites)
     {
         <div class="row">
-            <h4 class="col-xs-offset-1">@SR.FavoriteLinesTitle("hide js-favorites-count", Model.FavoriteLines.Count())</h4>
+            <h2 class="col-xs-offset-1 h4">@SR.FavoriteLinesTitle("hide js-favorites-count", Model.FavoriteLines.Count())</h2>
             @await Html.PartialAsync("_Lines", Model.FavoriteLines)
         </div>
     }
@@ -18,7 +18,7 @@
                     SR.OtherLinesTitle(classes, count) :
                     SR.AvailableLinesTitle(classes, count);
             }
-            <h4 class="col-xs-offset-1">@otherTitle</h4>
+            <h2 class="col-xs-offset-1 h4">@otherTitle</h2>
             @await Html.PartialAsync("_Lines", Model.OtherLines)
         </div>
     }

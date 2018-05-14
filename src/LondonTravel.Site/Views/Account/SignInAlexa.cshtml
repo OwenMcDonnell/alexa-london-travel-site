@@ -1,11 +1,11 @@
-﻿@{
+@{
     ViewBag.MetaDescription = SR.AlexaSignInMetaDescription;
     ViewBag.MetaRobots = "NOINDEX";
     ViewBag.Title = SR.AlexaSignInTitle;
 }
 @await Html.PartialAsync("_SignInErrors")
 <section>
-    <h3>@SR.AlexaSignInTitle</h3>
+    <h1 class="h3">@SR.AlexaSignInTitle</h1>
     <p>
         @SR.AlexaSignInParagraph1
     </p>
@@ -28,7 +28,7 @@
     @SR.AlexaSignInFormTitle
 </h4>
 <div class="row">
-    <div class="col-xs-12 col-sm-12 col-md-4">
+    <div class="col-12 col-md-4">
         <section>
             @await Html.PartialAsync("_SignInForm")
         </section>

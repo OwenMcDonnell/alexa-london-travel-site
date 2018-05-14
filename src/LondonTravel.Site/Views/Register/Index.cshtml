@@ -7,15 +7,13 @@
 <div class="row">
     <div class="col-md-12">
         <section>
-            <h2>@SR.RegisterSubtitle</h2>
+            <h1 class="h2">@SR.RegisterSubtitle</h1>
             <p class="lead">
                 @SR.RegisterLead
             </p>
             <blockquote>
-                <p>
-                    <i>
-                        @SR.CommuteSkillInvocation
-                    </i>
+                <p class="mb-0">
+                    <em>@SR.CommuteSkillInvocation</em>
                 </p>
             </blockquote>
             <p>
@@ -28,27 +26,30 @@
                 @SR.RegisterParagraph3
                 <ul>
                     <li>
-                        <a asp-route="@SiteRoutes.PrivacyPolicy" class="small" rel="noopener" title="@SR.PrivacyPolicyLinkAltText" data-ga-label="Privacy Policy (Register)">
+                        <a asp-route="@SiteRoutes.PrivacyPolicy" rel="noopener" title="@SR.PrivacyPolicyLinkAltText" data-ga-label="Privacy Policy (Register)">
                             @SR.PrivacyPolicyLinkText
                         </a>
                     </li>
                     <li>
-                        <a asp-route="@SiteRoutes.TermsOfService" class="small" rel="noopener" title="@SR.TermsOfServiceLinkAltText" data-ga-label="Terms of Service (Register)">
+                        <a asp-route="@SiteRoutes.TermsOfService" rel="noopener" title="@SR.TermsOfServiceLinkAltText" data-ga-label="Terms of Service (Register)">
                             @SR.TermsOfServiceLinkText
                         </a>
                     </li>
                 </ul>
             </p>
-            <p>
-                @SR.RegisterParagraph4(Model.RegisteredUsers)
-            </p>
+            @if (Model.RegisteredUsers > 0)
+            {
+                <p>
+                    @SR.RegisterParagraph4(Model.RegisteredUsers)
+                </p>
+            }
         </section>
     </div>
 </div>
 <hr />
-<h4>
+<h2 class="h4">
     @SR.RegisterSignInSubtitle
-</h4>
+</h2>
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-4">
         <section>

@@ -1,82 +1,63 @@
-<nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header">
-            <a asp-route="@SiteRoutes.Home" class="navbar-brand" title="@SR.HomepageLinkAltText" data-ga-label="Homepage Navbar">
-                <span>
-                    @SR.BrandName
-                    <lazyimg src="@Url.CdnContent("avatar.png", Options)" alt="@SR.BrandName" title="@SR.BrandName" aria-hidden="true" />
-                    <noscript>
-                        <img src="@Url.CdnContent("avatar.png", Options)" alt="@SR.BrandName" title="@SR.BrandName" aria-hidden="true" />
-                    </noscript>
-                </span>
-            </a>
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" data-ga-label="Navbar Collapse">
-                <span class="sr-only">@SR.NavbarCollapseAltText</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-        </div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" data-ga-label="Navbar Menu">
-                        @SR.NavbarMenuText <span class="caret"></span>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a asp-route="@SiteRoutes.Home" class="navbar-brand" title="@SR.HomepageLinkAltText" data-ga-label="Homepage Navbar">
+        <span>
+            @SR.BrandName
+            <lazyimg src="@Url.CdnContent("avatar.png", Options)" alt="@SR.BrandName" title="@SR.BrandName" aria-hidden="true" />
+            <noscript>
+                <img src="@Url.CdnContent("avatar.png", Options)" alt="@SR.BrandName" title="@SR.BrandName" aria-hidden="true" />
+            </noscript>
+        </span>
+    </a>
+    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="site-navbar" aria-expanded="false" aria-label="@SR.NavbarCollapseAltText" data-ga-label="Navbar Collapse">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-ga-label="Navbar Menu">
+                    @SR.NavbarMenuText
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="@Options?.ExternalLinks?.Skill" rel="noopener noreferrer" target="_blank" title="@SR.InstallLinkAltText" data-ga-label="Install Navbar">
+                        @SR.InstallLinkText
+                        <i class="fas fa-external-link-alt" aria-hidden="true"></i>
                     </a>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a href="@Options?.ExternalLinks?.Skill" rel="noopener noreferrer" target="_blank" title="@SR.InstallLinkAltText" data-ga-label="Install Navbar">
-                                @SR.InstallLinkText
-                                <i class="fa fa-external-link" aria-hidden="true"></i>
-                            </a>
-                        </li>
-                        @if (Options?.Authentication.IsEnabled == true)
+                    @if (Options?.Authentication?.IsEnabled == true)
+                    {
+                        <div class="dropdown-divider"></div>
+                        @if (User.Identity.IsAuthenticated)
                         {
-                            <li role="separator" class="divider"></li>
-                            @if (User.Identity.IsAuthenticated)
-                            {
-                                <li>
-                                    <a asp-route="@SiteRoutes.Manage" title="@SR.ManageLinkAltText" data-ga-label="Manage Account Navbar">
-                                        @SR.ManageLinkText <i class="fa fa-user" aria-hidden="true"></i>
-                                    </a>
-                                </li>
-                            }
-                            else
-                            {
-                                <li>
-                                    <a asp-route="@SiteRoutes.Register" title="@SR.RegisterLinkAltText" data-ga-label="Register Navbar">@SR.RegisterLinkText <i class="fa fa-user-plus" aria-hidden="true"></i></a>
-                                </li>
-                            }
+                            <a class="dropdown-item" asp-route="@SiteRoutes.Manage" title="@SR.ManageLinkAltText" data-ga-label="Manage Account Navbar">
+                                @SR.ManageLinkText <i class="fas fa-user" aria-hidden="true"></i>
+                            </a>
                         }
-                        <li role="separator" class="divider"></li>
-                        <li>
-                            <a asp-route="@SiteRoutes.Help" title="@SR.HelpLinkAltText" data-ga-label="Help Navbar">
-                                @SR.HelpLinkText <i class="fa fa-question-circle" aria-hidden="true"></i>
+                        else
+                        {
+                            <a class="dropdown-item" asp-route="@SiteRoutes.Register" title="@SR.RegisterLinkAltText" data-ga-label="Register Navbar">
+                                @SR.RegisterLinkText <i class="fas fa-user-plus" aria-hidden="true"></i>
                             </a>
-                        </li>
-                        <li>
-                            <a asp-route="@SiteRoutes.PrivacyPolicy" title="@SR.PrivacyPolicyLinkAltText" data-ga-label="Privacy Policy Navbar">
-                                @SR.PrivacyPolicyLinkText
-                            </a>
-                        </li>
-                        <li>
-                            <a asp-route="@SiteRoutes.TermsOfService" title="@SR.TermsOfServiceLinkAltText" data-ga-label="Terms of Service Navbar">
-                                @SR.TermsOfServiceLinkText
-                            </a>
-                        </li>
-                        <li role="separator" class="divider"></li>
-                        <li>
-                            <a asp-route="@SiteRoutes.Technology" title="@SR.TechnologyLinkAltText" data-ga-label="Technology Navbar">
-                                @SR.TechnologyLinkText
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-            @if (Options?.Authentication?.IsEnabled == true)
-            {
-                @await Html.PartialAsync("_SignInPartial")
-            }
-        </div>
+                        }
+                    }
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" asp-route="@SiteRoutes.Help" title="@SR.HelpLinkAltText" data-ga-label="Help Navbar">
+                        @SR.HelpLinkText <i class="fas fa-question-circle" aria-hidden="true"></i>
+                    </a>
+                    <a class="dropdown-item" asp-route="@SiteRoutes.PrivacyPolicy" title="@SR.PrivacyPolicyLinkAltText" data-ga-label="Privacy Policy Navbar">
+                        @SR.PrivacyPolicyLinkText
+                    </a>
+                    <a class="dropdown-item" asp-route="@SiteRoutes.TermsOfService" title="@SR.TermsOfServiceLinkAltText" data-ga-label="Terms of Service Navbar">
+                        @SR.TermsOfServiceLinkText
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" asp-route="@SiteRoutes.Technology" title="@SR.TechnologyLinkAltText" data-ga-label="Technology Navbar">
+                        @SR.TechnologyLinkText
+                    </a>
+                </div>
+            </li>
+        </ul>
+        @if (Options?.Authentication?.IsEnabled == true)
+        {
+            @await Html.PartialAsync("_SignInPartial")
+        }
     </div>
 </nav>

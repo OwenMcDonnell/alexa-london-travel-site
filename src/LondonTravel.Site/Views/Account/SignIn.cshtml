@@ -1,29 +1,29 @@
-﻿@{
+@{
     ViewBag.MetaDescription = SR.SignInMetaDescription;
     ViewBag.MetaRobots = "NOINDEX";
     ViewBag.Title = SR.SignInTitle;
 }
 @await Html.PartialAsync("_SignInErrors")
-<h2>@SR.SignInTitle</h2>
+<h1 class="h2">@SR.SignInTitle</h1>
 <div class="row">
     <div class="col-md-4">
         <section>
-            <h4>@SR.SignInSubtitle</h4>
+            <h2 class="h4">@SR.SignInSubtitle</h2>
             <hr />
             @await Html.PartialAsync("_SignInForm")
         </section>
     </div>
-    <hr class="hidden-md hidden-lg" />
+    <hr class="d-md-none" />
     <div class="col-md-8">
         <section>
-            <h3>@SR.SignInRegisterSubtitle</h3>
+            <h3 class="h4">@SR.SignInRegisterSubtitle</h3>
             <p>
                 @SR.SignInRegisterText
             </p>
             <p>
-                <a class="btn btn-primary btn-lg" asp-route="@SiteRoutes.Register" title="@SR.RegisterLinkAltText" data-ga-label="Register (Button)">
+                <a class="btn btn-lg btn-primary btn-lg" asp-route="@SiteRoutes.Register" title="@SR.RegisterLinkAltText" data-ga-label="Register (Button)">
                     @SR.RegisterLinkText
-                    <i class="fa fa-user-plus" aria-hidden="true"></i>
+                    <i class="fas fa-user-plus" aria-hidden="true"></i>
                 </a>
             </p>
         </section>
