@@ -69,7 +69,7 @@
   </Target>
   <!-- HACK Force qps-qloc RESX file to be compiled -->
   <PropertyGroup>
-    <_PseudoLocale>qps-qloc</_PseudoLocale>
+    <_PseudoLocale>qps-ploc</_PseudoLocale>
     <_ResourceFileName>$(RootNamespace).SiteResources</_ResourceFileName>
   </PropertyGroup>
   <ItemGroup>
