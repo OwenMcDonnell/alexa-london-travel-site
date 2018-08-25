@@ -10,7 +10,7 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <TypeScriptToolsVersion>latest</TypeScriptToolsVersion>
     <UserSecretsId>londontravel.martincostello.com</UserSecretsId>
-    <XlfLanguages>en-GB;en-US;qps-qloc</XlfLanguages>
+    <XlfLanguages>en-GB;en-US;qps-ploc</XlfLanguages>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DebugSymbols>True</DebugSymbols>
