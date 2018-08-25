@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
     <DebugType>full</DebugType>
     <Description>https://londontravel.martincostello.com/</Description>
@@ -10,6 +10,7 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <TypeScriptToolsVersion>latest</TypeScriptToolsVersion>
     <UserSecretsId>londontravel.martincostello.com</UserSecretsId>
+    <XlfLanguages>en-GB;en-US;qps-qloc</XlfLanguages>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DebugSymbols>True</DebugSymbols>
@@ -51,6 +52,7 @@
     <PackageReference Include="Serilog.Sinks.UDP" Version="4.1.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="3.0.0" />
     <PackageReference Include="WindowsAzure.Storage" Version="9.3.0" />
+    <PackageReference Include="XliffTasks" Version="0.2.0-beta-000081" PrivateAssets="All" />
   </ItemGroup>
   <Target Name="BundleAssets" BeforeTargets="PrepareForPublish">
     <Exec Command="npm install --loglevel=error" Condition=" '$(InstallWebPackages)' == 'true' " />
@@ -65,4 +67,29 @@
       <Content Include="wwwroot/.well-known/**" CopyToPublishDirectory="PreserveNewest" Exclude="$(DefaultItemExcludes)" />
     </ItemGroup>
   </Target>
+  <!-- HACK Force qps-qloc RESX file to be compiled -->
+  <PropertyGroup>
+    <_PseudoLocale>qps-qloc</_PseudoLocale>
+    <_ResourceFileName>$(RootNamespace).SiteResources</_ResourceFileName>
+  </PropertyGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="$(_ResourceFileName).$(_PseudoLocale).resx">
+      <OutputResource>$(IntermediateOutputPath).$(_ResourceFileName).$(_PseudoLocale).resources</OutputResource>
+      <Type>Resx</Type>
+      <WithCulture>true</WithCulture>
+    </EmbeddedResource>
+    <_SatelliteAssemblyResourceInputs Include="obj\Debug\$(TargetFramework)\$(_ResourceFileName).$(_PseudoLocale).resources">
+      <Culture>$(_PseudoLocale)</Culture>
+      <ManifestResourceName>$(_ResourceFileName).$(_PseudoLocale)</ManifestResourceName>
+      <OriginalItemSpec>$(TargetName).xlf\$(_ResourceFileName).$(_PseudoLocale).resx</OriginalItemSpec>
+      <OutputResource>$(IntermediateOutputPath)$(_ResourceFileName).$(_PseudoLocale).resources</OutputResource>
+      <TargetPath>$(TargetName).xlf\$(_ResourceFileName).$(_PseudoLocale).resx</TargetPath>
+      <Type>Resx</Type>
+      <WithCulture>true</WithCulture>
+    </_SatelliteAssemblyResourceInputs>
+    <IntermediateSatelliteAssembliesWithTargetPath Include="$(IntermediateOutputPath)$(_PseudoLocale)\$(TargetName).resources.dll">
+      <Culture>$(_PseudoLocale)</Culture>
+      <TargetPath>$(_PseudoLocale)\$(TargetName).resources.dll</TargetPath>
+    </IntermediateSatelliteAssembliesWithTargetPath>
+  </ItemGroup>
 </Project>
