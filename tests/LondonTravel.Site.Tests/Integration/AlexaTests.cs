@@ -140,8 +140,13 @@ namespace MartinCostello.LondonTravel.Site.Integration
                 .Where((p) => p["redirectResponse"] != null)
                 .Where((p) => p["request"] != null)
                 .Where((p) => p["request"].Value<string>("url") == driverUrl)
-                .Select((p) => p["redirectResponse"]["headers"].Value<string>("Location"))
+                .Select((p) => p["redirectResponse"]["headers"].Value<string>("location"))
                 .LastOrDefault();
+
+            if (url == null)
+            {
+                throw new InvalidOperationException("Failed to parse browser performance log for authorization URL.");
+            }
 
             return ParseAuthorization(url);
         }

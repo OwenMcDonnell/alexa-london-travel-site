@@ -10,6 +10,7 @@ namespace MartinCostello.LondonTravel.Site.TagHelpers
     using System.Text.Encodings.Web;
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Hosting;
+    using Microsoft.AspNetCore.Mvc.Razor.Infrastructure;
     using Microsoft.AspNetCore.Mvc.Routing;
     using Microsoft.AspNetCore.Mvc.TagHelpers;
     using Microsoft.AspNetCore.Razor.TagHelpers;
@@ -50,8 +51,8 @@ namespace MartinCostello.LondonTravel.Site.TagHelpers
         /// </summary>
         private static readonly char[] Tilde = new[] { '~' };
 
-        public InlineStyleTagHelper(IHostingEnvironment hostingEnvironment, IMemoryCache cache, HtmlEncoder htmlEncoder, JavaScriptEncoder javaScriptEncoder, IUrlHelperFactory urlHelperFactory)
-            : base(hostingEnvironment, cache, htmlEncoder, javaScriptEncoder, urlHelperFactory)
+        public InlineStyleTagHelper(IHostingEnvironment hostingEnvironment, TagHelperMemoryCacheProvider cacheProvider, HtmlEncoder htmlEncoder, JavaScriptEncoder javaScriptEncoder, IUrlHelperFactory urlHelperFactory)
+            : base(hostingEnvironment, cacheProvider, htmlEncoder, javaScriptEncoder, urlHelperFactory)
         {
         }
 
@@ -120,7 +121,12 @@ namespace MartinCostello.LondonTravel.Site.TagHelpers
 
                 css = FixSourceMapPath(css, filePath);
 
-                Cache.Set(cacheKey, css);
+                var options = new MemoryCacheEntryOptions()
+                {
+                    Size = css.Length,
+                };
+
+                Cache.Set(cacheKey, css, options);
             }
 
             output.Content.SetHtmlContent(css);
