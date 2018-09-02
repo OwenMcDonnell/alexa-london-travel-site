@@ -60,7 +60,7 @@ else {
 function DotNetTest {
     param([string]$Project)
 
-    if ($DisableCodeCoverage -eq $true) {
+    if ($DisableCodeCoverage -eq $false) {
         & $dotnet test $Project --output $OutputPath
     }
     else {
