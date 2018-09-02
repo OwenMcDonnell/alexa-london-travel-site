@@ -7,6 +7,7 @@ param(
 )
 
 $solutionPath = Split-Path $MyInvocation.MyCommand.Definition
+write-host $solutionPath
 $sdkFile      = Join-Path $solutionPath "global.json"
 
 $dotnetVersion = (Get-Content $sdkFile | Out-String | ConvertFrom-Json).sdk.version
