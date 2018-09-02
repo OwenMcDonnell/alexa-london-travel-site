@@ -15,7 +15,7 @@ $dotnetVersion = (Get-Content $sdkFile | Out-String | ConvertFrom-Json).sdk.vers
 if ($OutputPath -eq "") {
     $OutputPath = Join-Path "$(Convert-Path "$PSScriptRoot")" "artifacts"
 }
-
+write-host $OutputPath
 $installDotNetSdk = $false;
 
 if (($null -eq (Get-Command "dotnet.exe" -ErrorAction SilentlyContinue)) -and ($null -eq (Get-Command "dotnet" -ErrorAction SilentlyContinue))) {
