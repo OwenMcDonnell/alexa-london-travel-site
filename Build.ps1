@@ -82,7 +82,7 @@ function DotNetTest {
         $coverageOutput = Join-Path $OutputPath "code-coverage.xml"
         $reportOutput = Join-Path $OutputPath "coverage"
 
-        & $openCoverPath -target:$dotnetPath -"targetargs:test $Project --output $OutputPath -output:$coverageOutput-excludebyattribute:*.ExcludeFromCodeCoverage* -hideskipped:All -mergebyhash -oldstyle -register:user -skipautoprops -filter:"+[LondonTravel.Site]* +[LondonTravel.Site.Views]* -[LondonTravel.Site.Tests]*"
+        & $openCoverPath -target:$dotnetPath -targetargs:"test $Project --output $OutputPath" -output:$coverageOutput -excludebyattribute:"*.ExcludeFromCodeCoverage*" -hideskipped:All -mergebyhash -oldstyle -register:user -skipautoprops -filter:"+[LondonTravel.Site]* +[LondonTravel.Site.Views]* -[LondonTravel.Site.Tests]*"
 
         if ($LASTEXITCODE -eq 0) {
             & $reportGeneratorPath `
