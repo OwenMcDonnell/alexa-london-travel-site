@@ -84,7 +84,7 @@ function DotNetTest {
         write-host $outputPath
         write-host "Coverage Output"
         write-host $coverageOutput
-        & $openCoverPath -target:$dotnetPath -targetargs:"test $Project --output $OutputPath" -excludebyattribute:"*.ExcludeFromCodeCoverage*" -hideskipped:All -mergebyhash -oldstyle -register:user -skipautoprops -filter:"+[LondonTravel.Site]* +[LondonTravel.Site.Views]* -[LondonTravel.Site.Tests]*"
+        & $openCoverPath -target:$dotnetPath -targetargs:"test $Project --results $OutputPath" -output:$coverageOutput -excludebyattribute:"*.ExcludeFromCodeCoverage*" -hideskipped:All -mergebyhash -oldstyle -register:user -skipautoprops -filter:"+[LondonTravel.Site]* +[LondonTravel.Site.Views]* -[LondonTravel.Site.Tests]*"
 
         if ($LASTEXITCODE -eq 0) {
             & $reportGeneratorPath `
