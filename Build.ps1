@@ -86,16 +86,16 @@ function DotNetTest {
         write-host "Coverage Output"
         write-host $coverageOutput
         & $openCoverPath `
-            `"-target:$dotnetPath`" `
-            `"-targetargs:test $Project --output $OutputPath`" `
-            -output:"./code-coverage.xml" `
+            -target:$dotnetPath `
+            -targetargs:`"test $Project --output $OutputPath`" `
+            -output:`"./code-coverage.xml`" `
             -excludebyattribute:*.ExcludeFromCodeCoverage* `
             -hideskipped:All `
             -mergebyhash `
             -oldstyle `
             -register:user `
             -skipautoprops `
-            `"-filter:+[LondonTravel.Site]* +[LondonTravel.Site.Views]* -[LondonTravel.Site.Tests]*`"
+            -filter:`"+[LondonTravel.Site]* +[LondonTravel.Site.Views]* -[LondonTravel.Site.Tests]*`"
 
         if ($LASTEXITCODE -eq 0) {
             & $reportGeneratorPath `
