@@ -87,7 +87,7 @@ function DotNetTest {
         & $openCoverPath `
             `"-target:$dotnetPath`" `
             `"-targetargs:test $Project --output $OutputPath`" `
-            -output:$coverageOutput `
+            -output:"./code-coverage.xml `
             -excludebyattribute:*.ExcludeFromCodeCoverage* `
             -hideskipped:All `
             -mergebyhash `
