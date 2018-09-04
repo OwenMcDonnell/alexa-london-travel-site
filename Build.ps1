@@ -59,7 +59,7 @@ else {
 
 function DotNetTest {
     param([string]$Project)
-    write-host "Project Parameter
+    write-host "Project Parameter"
     write-host $Project
     if ($DisableCodeCoverage -eq $true) {
         & $dotnet test $Project --output $OutputPath
