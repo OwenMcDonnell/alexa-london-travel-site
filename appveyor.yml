@@ -35,4 +35,4 @@ nuget:
   disable_publish_on_pr: true
 
 skip_tags: false
-test: off
+#test: off
