@@ -89,12 +89,9 @@ function DotNetTest {
             -target:$dotnetPath `
             -targetargs:`"test $Project --output $outputPath`" `
             -output:$coverageOutput `
-            -excludebyattribute:*.ExcludeFromCodeCoverage* `
-            -hideskipped:All `
-            -mergebyhash `
-            -oldstyle `
+
             -register:user `
-            -skipautoprops `
+
             -filter:`"+[LondonTravel.Site]* -[LondonTravel.Site.Tests]*`"
 
         if ($LASTEXITCODE -eq 0) {
