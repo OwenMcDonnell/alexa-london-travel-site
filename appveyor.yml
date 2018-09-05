@@ -19,10 +19,9 @@ install:
   - ps: npm install -g gulp@3.9.1 --loglevel=error
 
 build_script:
-  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
-
-
+  
   - ps: .\Build.ps1
+  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
 
 after_build:
     - "SET PATH=C:\\Python34;C:\\Python34\\Scripts;%PATH%"
