@@ -87,7 +87,7 @@ function DotNetTest {
         write-host $coverageOutput
         & $openCoverPath `
             -target:$dotnetPath `
-            -targetargs:`"test $Project --output &outputPath`" `
+            -targetargs:`"test $Project --output $outputPath`" `
             -output:`"./code-coverage.xml`" `
             -excludebyattribute:*.ExcludeFromCodeCoverage* `
             -hideskipped:All `
