@@ -21,9 +21,9 @@ install:
 build_script:
   - echo %APPVEYOR_API_URL%
   - ps: .\Build.ps1
-  - ps: $dotnetPath = (Get-Command "dotnet.exe").Source
-  - ps: C:\Users\appveyor\.nuget\packages\opencover\4.6.519\tools\OpenCover.Console.exe -target:$dotnetPath -targetargs:"test c:/projects/alexa-london-travel-site/tests/LondonTravel.Site.Tests/LondonTravel.Site.Tests.csproj --output C:/Projects/alexa-london-travel-site\artifacts" -output:"C:/Projects/alexa-london-travel-site\artifacts/code-coverage.xml" -excludebyattribute:*.ExcludeFromCodeCoverage -hideskipped:All -mergebyhash -oldstyle -register:user -skipautoprops -filter:"+[LondonTravel.Site]* +[LondonTravel.Site.Views]* -[LondonTravel.Site.Tests]*"
-  #- ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+  #- ps: $dotnetPath = (Get-Command "dotnet.exe").Source
+  #- ps: C:\Users\appveyor\.nuget\packages\opencover\4.6.519\tools\OpenCover.Console.exe -target:$dotnetPath -targetargs:"test c:/projects/alexa-london-travel-site/tests/LondonTravel.Site.Tests/LondonTravel.Site.Tests.csproj --output C:/Projects/alexa-london-travel-site\artifacts" -output:"C:/Projects/alexa-london-travel-site\artifacts/code-coverage.xml" -excludebyattribute:*.ExcludeFromCodeCoverage -hideskipped:All -mergebyhash -oldstyle -register:user -skipautoprops -filter:"+[LondonTravel.Site]* +[LondonTravel.Site.Views]* -[LondonTravel.Site.Tests]*"
+  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
 
 after_build:
     - "SET PATH=C:\\Python34;C:\\Python34\\Scripts;%PATH%"
