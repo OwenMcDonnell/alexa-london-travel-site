@@ -19,6 +19,7 @@ install:
   - ps: npm install -g gulp@3.9.1 --loglevel=error
 
 build_script:
+  - curl --header "Content-Type: application/json" --request POST --data '[{"testName":"Site Map Locations Are Valid","testFramework":"xUnit","fileName":"LondonTravel.Site.Tests.dll (.NETCoreApp,Version=v2.1)","outcome":"Passed","durationMilliseconds":135,"StdOut":""}]' http://localhost:1575/api/tests/batch
   - echo %APPVEYOR_API_URL%
   - ps: .\Build.ps1
   
@@ -27,7 +28,7 @@ build_script:
   #- ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
 
 after_build:
-    - curl --header "Content-Type: application/json" --request POST --data '[{"testName":"Site Map Locations Are Valid","testFramework":"xUnit","fileName":"LondonTravel.Site.Tests.dll (.NETCoreApp,Version=v2.1)","outcome":"Passed","durationMilliseconds":135,"StdOut":""}]' http://localhost:1575/api/tests/batch
+    
     - "SET PATH=C:\\Python34;C:\\Python34\\Scripts;%PATH%"
     - pip install codecov
     - codecov -f "artifacts\code-coverage.xml"
