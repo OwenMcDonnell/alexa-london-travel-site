@@ -7,7 +7,6 @@ param(
 )
 
 $solutionPath = Split-Path $MyInvocation.MyCommand.Definition
-
 $sdkFile      = Join-Path $solutionPath "global.json"
 
 $dotnetVersion = (Get-Content $sdkFile | Out-String | ConvertFrom-Json).sdk.version
@@ -15,8 +14,7 @@ $dotnetVersion = (Get-Content $sdkFile | Out-String | ConvertFrom-Json).sdk.vers
 if ($OutputPath -eq "") {
     $OutputPath = Join-Path "$(Convert-Path "$PSScriptRoot")" "artifacts"
 }
-write-host "Output Path"
-write-host $OutputPath
+
 $installDotNetSdk = $false;
 
 if (($null -eq (Get-Command "dotnet.exe" -ErrorAction SilentlyContinue)) -and ($null -eq (Get-Command "dotnet" -ErrorAction SilentlyContinue))) {
@@ -59,8 +57,7 @@ else {
 
 function DotNetTest {
     param([string]$Project)
-    write-host "Project Parameter"
-    write-host $Project
+
     if ($DisableCodeCoverage -eq $true) {
         & $dotnet test $Project --output $OutputPath
     }
@@ -71,7 +68,7 @@ function DotNetTest {
         } else {
             $dotnetPath = (Get-Command "dotnet.exe").Source
         }
-        write-host $dotnetPath
+
         $nugetPath = Join-Path $env:USERPROFILE ".nuget\packages"
 
         $openCoverVersion = "4.6.519"
@@ -79,16 +76,15 @@ function DotNetTest {
 
         $reportGeneratorVersion = "3.1.2"
         $reportGeneratorPath = Join-Path $nugetPath "ReportGenerator\$reportGeneratorVersion\tools\ReportGenerator.exe"
-        
+
         $coverageOutput = Join-Path $OutputPath "code-coverage.xml"
         $reportOutput = Join-Path $OutputPath "coverage"
-        write-host $outputPath
-        write-host "Coverage Output"
-        write-host $coverageOutput
+
         & $openCoverPath `
-            -target:$dotnetPath `
-            -targetargs:`"test $Project --output $outputPath`" `
+            `"-target:$dotnetPath`" `
+            `"-targetargs:test $Project --output $OutputPath`" `
             -output:$coverageOutput `
+            -excludebyattribute:*.ExcludeFromCodeCoverage* `
             -hideskipped:All `
             -mergebyhash `
             -oldstyle `
@@ -139,6 +135,6 @@ ForEach ($project in $publishProjects) {
 if ($SkipTests -eq $false) {
     Write-Host "Testing $($testProjects.Count) project(s)..." -ForegroundColor Green
     ForEach ($project in $testProjects) {
-        #DotNetTest $project
+        DotNetTest $project
     }
 }
