@@ -4,6 +4,8 @@ version: 2.1.{build}
 environment:
   DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
   NUGET_XMLDOC_MODE: skip
+  APPVEYOR_API_KEY:
+    secure: f7KhsLtvVpjkt+Qdcti/HlBSidEbnuu9+cl+FxtSOPg=
 
 branches:
   only:
@@ -38,6 +40,7 @@ after_build:
           StdOut = ""
           StdErr = ""
         }
+        Invoke-RestMethod -Uri "$env:APPVEYOR_API_URL/api/tests/batch" -Headers $headers -Method PUT -Body (ConvertTo-Json @($body))
     - "SET PATH=C:\\Python34;C:\\Python34\\Scripts;%PATH%"
     - pip install codecov
     - codecov -f "artifacts\code-coverage.xml"
