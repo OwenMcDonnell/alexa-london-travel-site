@@ -32,9 +32,9 @@ after_build:
           "Content-type" = "application/json"
         }
         $body = @{
-          testName = "Site Map Locations Are Valid"
+          testName = "test test test"
           testFramework = "xUnit"
-          fileName = "LondonTravel.Site.Tests.dll (.NETCoreApp,Version=v2.1)"
+          fileName = "testing"
           outcome = "Passed"
           durationMilliseconds = 140
           StdOut = ""
