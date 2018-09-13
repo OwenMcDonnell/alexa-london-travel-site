@@ -5,7 +5,6 @@ param(
     [Parameter(Mandatory = $false)][switch] $SkipTests,
     [Parameter(Mandatory = $false)][switch] $DisableCodeCoverage
 )
-
 $solutionPath = Split-Path $MyInvocation.MyCommand.Definition
 $sdkFile      = Join-Path $solutionPath "global.json"
 
