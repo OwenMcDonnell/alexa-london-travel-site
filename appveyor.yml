@@ -46,7 +46,7 @@ after_build:
           durationMilliseconds = 140
           StdOut = ""
          }
-         Invoke-RestMethod -Uri "$env:APPVEYOR_API_URL/api/tests/batch" -Headers $headers -Method PUT -Body (ConvertTo-Json @($body2))
+         Invoke-RestMethod -Uri "$env:APPVEYOR_API_URL/api/tests/batch" -Headers $headers -Method PUT -Body (ConvertTo-Json @($body))
     
     - "SET PATH=C:\\Python34;C:\\Python34\\Scripts;%PATH%"
     - pip install codecov
