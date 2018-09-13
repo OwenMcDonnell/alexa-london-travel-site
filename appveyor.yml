@@ -37,8 +37,9 @@ build_script:
           outcome = "Passed"
           durationMilliseconds = 140
           StdOut = ""
-         }
-         Invoke-RestMethod -Uri "$env:APPVEYOR_API_URL/api/tests/batch" -Headers $headers -Method PUT -Body (ConvertTo-Json @($body))
+          StdErr = ""
+        }
+        Invoke-RestMethod -Uri "$env:APPVEYOR_API_URL/api/tests/batch" -Headers $headers -Method PUT -Body (ConvertTo-Json @($body))
   - echo %APPVEYOR_API_URL%
   - ps: .\Build.ps1
   
