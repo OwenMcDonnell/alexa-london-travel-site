@@ -32,23 +32,7 @@ build_script:
   #- ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
 
 after_build:
-    - ps: |
     
-        $token = $env:APPVERYOR_API_KEY
-        $headers = @{
-          "Authorization" = "Bearer $token"
-          "Content-type" = "application/json"
-        }
-        $body = @{
-          testName = "Site Map Locations Are Valid"
-          testFramework = "xUnit"
-          fileName = "LondonTravel.Site.Tests.dll (.NETCoreApp,Version=v2.1)"
-          outcome = "Passed"
-          durationMilliseconds = 140
-          StdOut = ""
-          StdErr = ""
-        }
-        Invoke-RestMethod -Uri "$env:APPVEYOR_API_URL/api/tests/batch" -Headers $headers -Method PUT -Body (ConvertTo-Json @($body))
     
     - "SET PATH=C:\\Python34;C:\\Python34\\Scripts;%PATH%"
     - pip install codecov
