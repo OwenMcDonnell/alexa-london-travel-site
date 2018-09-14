@@ -78,10 +78,11 @@ function DotNetTest {
 
         $coverageOutput = Join-Path $OutputPath "code-coverage.xml"
         $reportOutput = Join-Path $OutputPath "coverage"
+        write-host $project
         Write-Host "CALLING OPEN COVER CONSOLE"
         & $openCoverPath `
             `"-target:$dotnetPath`" `
-            `"-targetargs:test --output $OutputPath`" `
+            `"-targetargs:test $Project --output $OutputPath -noautoreporters`" `
             -output:$coverageOutput `
             -excludebyattribute:*.ExcludeFromCodeCoverage* `
             -hideskipped:All `
