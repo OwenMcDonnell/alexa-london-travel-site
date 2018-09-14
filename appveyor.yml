@@ -38,9 +38,9 @@ after_build:
           outcome = "Passed"
           durationMilliseconds = 140
           StdOut = ""
-          StdErr = ""
+
         }
-        Invoke-RestMethod -Uri "$env:APPVEYOR_API_URL/api/tests/batch" -Headers $headers -Method PUT -Body (ConvertTo-Json @($body))
+        Invoke-RestMethod -Uri "$env:APPVEYOR_API_URL/api/tests/batch" -Headers $headers -Method POST -Body (ConvertTo-Json @($body))
     - "SET PATH=C:\\Python34;C:\\Python34\\Scripts;%PATH%"
     - pip install codecov
     - codecov -f "artifacts\code-coverage.xml"
