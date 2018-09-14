@@ -78,7 +78,7 @@ function DotNetTest {
 
         $coverageOutput = Join-Path $OutputPath "code-coverage.xml"
         $reportOutput = Join-Path $OutputPath "coverage"
-        Write-Host "CALLING OPEN COVER CONSOLE
+        Write-Host "CALLING OPEN COVER CONSOLE"
         & $openCoverPath `
             `"-target:$dotnetPath`" `
             `"-targetargs:test $Project --output $OutputPath`" `
