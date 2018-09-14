@@ -34,7 +34,7 @@ after_build:
         $body = @{
           testName = "test test test"
           testFramework = "xUnit"
-          fileName = "testing"
+          fileName = "LondonTravel.Site.Tests.dll (.NETCoreApp,Version=v2.1)"
           outcome = "Passed"
           durationMilliseconds = 140
           StdOut = ""
