@@ -81,14 +81,15 @@ function DotNetTest {
         Write-Host "CALLING OPEN COVER CONSOLE"
         & $openCoverPath `
             `"-target:$dotnetPath`" `
-            `"-targetargs:test $Project --output $OutputPath`" `
+            `"-targetargs:test --output $OutputPath`" `
             -output:$coverageOutput `
             -excludebyattribute:*.ExcludeFromCodeCoverage* `
             -hideskipped:All `
             -mergebyhash `
             -oldstyle `
             -register:user `
-            -skipautoprops 
+            -skipautoprops `
+            -filter:"+[LondonTravel.Site]* +[LondonTravel.Site.Views]* -[LondonTravel.Site.Tests]*"
             
 
         if ($LASTEXITCODE -eq 0) {
