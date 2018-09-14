@@ -89,7 +89,7 @@ function DotNetTest {
             -oldstyle `
             -register:user `
             -skipautoprops `
-            `"-filter:+[LondonTravel.Site]* -[LondonTravel.Site.Tests]*`"
+            -filter:"+[LondonTravel.Site]* -[LondonTravel.Site.Tests]*"
 
         if ($LASTEXITCODE -eq 0) {
             & $reportGeneratorPath `
