@@ -88,8 +88,8 @@ function DotNetTest {
             -mergebyhash `
             -oldstyle `
             -register:user `
-            -skipautoprops `
-            -filter:"+[LondonTravel.Site]* -[LondonTravel.Site.Tests]*"
+            -skipautoprops 
+            
 
         if ($LASTEXITCODE -eq 0) {
             & $reportGeneratorPath `
