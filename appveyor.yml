@@ -12,15 +12,12 @@ branches:
     - master
 
 cache:
-  #- src\LondonTravel.Site\node_modules
-  #- '%APPDATA%\npm\node_modules'
-  #- '%APPDATA%\npm-cache'
+  - src\LondonTravel.Site\node_modules
+  - '%APPDATA%\npm\node_modules'
+  - '%APPDATA%\npm-cache'
 
 install:
-  - ps: | 
-        cd src/LondonTravel.site
-        npm install
-        cd ../..
+
   - ps: npm install -g npm@6.1.0 --loglevel=error
   - ps: npm install -g gulp@3.9.1 --loglevel=error
 
