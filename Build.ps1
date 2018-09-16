@@ -82,7 +82,7 @@ function DotNetTest {
         Write-Host "CALLING OPEN COVER CONSOLE"
         & $openCoverPath `
             `"-target:$dotnetPath`" `
-            `"-targetargs:test $Project --output $OutputPath`" `
+            `"-targetargs:test $Project -noautoreporters --output $OutputPath`" `
             -output:$coverageOutput `
             -excludebyattribute:*.ExcludeFromCodeCoverage* `
             -hideskipped:All `
