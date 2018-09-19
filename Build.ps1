@@ -80,7 +80,17 @@ function DotNetTest {
         $reportOutput = Join-Path $OutputPath "coverage"
         write-host "$project"
         Write-Host "CALLING XUNIT"
-        & $dotnetPath test $Project --output &OutputPath
+        & $openCoverPath `
+            `"-target:$dotnetPath`" `
+            `"-targetargs:test $Project -v d --output $OutputPath`" `
+            -output:$coverageOutput `
+            -excludebyattribute:*.ExcludeFromCodeCoverage* `
+            -hideskipped:All `
+            -mergebyhash `
+            -oldstyle `
+            -register:user `
+            -skipautoprops `
+            -filter:"+[LondonTravel.Site]* +[LondonTravel.Site.Views]* -[LondonTravel.Site.Tests]*"
 
             
 
