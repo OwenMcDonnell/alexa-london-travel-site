@@ -80,7 +80,7 @@ function DotNetTest {
         $reportOutput = Join-Path $OutputPath "coverage"
         write-host "$project"
         Write-Host "CALLING XUNIT"
-        & "$dotnetPath $Project --output &OutputPath"
+        & "$dotnetPath" $Project --output &OutputPath
         
             
 
