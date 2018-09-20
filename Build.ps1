@@ -82,7 +82,7 @@ function DotNetTest {
         Write-Host "CALLING XUNIT"
         & $openCoverPath `
             `"-target:$dotnetPath`" `
-            `"-targetargs:test $Project --output $OutputPath`" `
+            `"-targetargs:test $Project -p:ParallelizeTestCollections=false --output $OutputPath`" `
             -output:$coverageOutput `
             -excludebyattribute:*.ExcludeFromCodeCoverage* `
             -hideskipped:All `
